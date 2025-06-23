@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+@import "tailwindcss";
+
+
+
+
+ @plugin "daisyui" {
+   themes: light --default;
+ }
+
+ @layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/* Defaults hover styles on all devices */
+@custom-variant hover (&:hover);
+
+ @theme{
+  --color-primary-blue: #003366;
+  --font-inter:"Inter", sans-serif;
+ }
+.forgound-bg{
+   width: 100%;
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+}
+.forgound-bg::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('./assets/login-pattern.png');
+  background-repeat: repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  opacity: 0.08;
+  z-index: 0;
+}
+ @media (max-width:768px) {
+  .login-bg{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    z-index: 0;
+  }
+  .login-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('./assets/login-pattern.png');
+  background-repeat: repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  opacity: 0.04;
+  z-index: 0;
+}
+  
+ }
