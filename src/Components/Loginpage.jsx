@@ -443,7 +443,7 @@ const handleForgetPasswordSubmit = (e) => {
             </div>
 
             {/* Carousel Dots */}
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 cursor-pointer">
+            <div className="absolute left-1/2 -translate-x-1/2 flex gap-2 cursor-pointer">
               {[0, 1].map((i) => (
                 <button
                   key={i}
