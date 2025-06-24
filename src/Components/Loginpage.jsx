@@ -250,7 +250,7 @@ const handleForgetPasswordSubmit = (e) => {
   return (
     <>
       {forget || adminVerification || (
-        <div className="w-full  h-[100vh] max-h-screen flex max-sm:flex-col  z-10 ">
+        <div className="w-full h-[100vh] flex max-md:forgound-bg z-10 ">
           {/* Left Panel */}
           <div className="max-md:w-full w-1/2 z-30">
             <div className="flex items-center h-auto  py-5 px-6">
@@ -259,7 +259,7 @@ const handleForgetPasswordSubmit = (e) => {
                 OS BIZ
               </h1>
             </div>
-            <div className="flex justify-center items-center w-full h-[85%]">
+            <div className="flex justify-center items-center w-full h-[80%] max-md:h-fit">
               <div className="w-96 max-sm:w-full h-fit max-md:my-20 mx-auto my-6 p-6 max-md:px-4 bg-white">
               <h2 className="text-3xl text-black font-extrabold">Log in</h2>
               <p className="text-gray-700 mt-2">

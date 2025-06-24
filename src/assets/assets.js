@@ -13,6 +13,9 @@ import loginInten from "./login-intelligence.png"
 import forgetmail from "./forget-email.png"
 import forgetphone from "./forget-message.png"
 import Autheticate from "./Authenticate.png"
+import Signupimg from "./Signup-img.png"
+import CompanyName from "./briefcase.png"
+import PhoneNumber from "./Phone.png"
 
 export const assests = {
     logo,
@@ -30,4 +33,10 @@ export const assests = {
     forgetmail,
     forgetphone,
     Autheticate
+}
+
+export const SignupAssests = {
+    Signupimg,
+    CompanyName,
+    PhoneNumber
 }
