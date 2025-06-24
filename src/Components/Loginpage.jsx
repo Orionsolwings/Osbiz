@@ -250,17 +250,17 @@ const handleForgetPasswordSubmit = (e) => {
   return (
     <>
       {forget || adminVerification || (
-        <div className="w-full  h-[100vh] max-h-screen flex max-sm:flex-col login-bg z-10">
+        <div className="w-full  h-[100vh] max-h-screen flex max-sm:flex-col  z-10 ">
           {/* Left Panel */}
           <div className="max-md:w-full w-1/2 z-30">
-            <div className="flex items-center py-5 px-6">
+            <div className="flex items-center h-auto  py-5 px-6">
               <img className="w-16 h-16" src={assests.logo} alt="Logo" />
               <h1 className="text-2xl font-extrabold text-primary-blue ml-2">
                 OS BIZ
               </h1>
             </div>
-
-            <div className="w-96 max-sm:w-full max-md:my-20 mx-auto my-6 p-6 max-md:px-4 bg-white">
+            <div className="flex justify-center items-center w-full h-[85%]">
+              <div className="w-96 max-sm:w-full h-fit max-md:my-20 mx-auto my-6 p-6 max-md:px-4 bg-white">
               <h2 className="text-3xl text-black font-extrabold">Log in</h2>
               <p className="text-gray-700 mt-2">
                 Welcome back! Please enter your details.
@@ -357,14 +357,16 @@ const handleForgetPasswordSubmit = (e) => {
                 </button>
               </form>
             </div>
+            </div>
           </div>
 
           {/* Right Panel with Carousel */}
           <div
-            className="max-md:hidden relative w-1/2 bg-cover bg-center overflow-hidden"
+            className="max-md:hidden relative w-1/2 h-full bg-cover bg-center overflow-hidden"
             style={{ backgroundImage: `url(${assests.loginBg})` }}
           >
-            <div
+            <div className="w-full h-fit relative top-1/2 transform -translate-y-1/2">
+              <div
               className="flex transition-transform duration-700 ease-in-out w-[200%]"
               style={{ transform: `translateX(-${currentSlide * 50}%)` }}
             >
@@ -453,6 +455,7 @@ const handleForgetPasswordSubmit = (e) => {
                   }`}
                 ></button>
               ))}
+            </div>
             </div>
           </div>
         </div>
