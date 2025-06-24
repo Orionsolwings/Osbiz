@@ -12,6 +12,7 @@ import loginSetting from "./login-ettings.png"
 import loginInten from "./login-intelligence.png"
 import forgetmail from "./forget-email.png"
 import forgetphone from "./forget-message.png"
+import Autheticate from "./Authenticate.png"
 
 export const assests = {
     logo,
@@ -27,5 +28,6 @@ export const assests = {
     loginInten,
     loginpattern,
     forgetmail,
-    forgetphone
+    forgetphone,
+    Autheticate
 }

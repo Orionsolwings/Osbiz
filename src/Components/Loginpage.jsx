@@ -1,12 +1,13 @@
 import React, { useState, useEffect,useRef } from "react";
-import { assests } from "../../assets/assets";
+import { assests } from "@assets/assets";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { FaCheck, FaTimes } from "react-icons/fa";
 import { IoIosArrowBack } from "react-icons/io";
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 const Loginpage = () => {
   const [showPassword, setShowPassword] = useState(false);
-   const [confirmShowPassword, setConfirmShowPassword] = useState(false);
+  const [confirmShowPassword, setConfirmShowPassword] = useState(false);
   const [emailAddress, setEmailAddress] = useState("");
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
@@ -25,6 +26,7 @@ const [confirmError, setConfirmError] = useState(""); // field-specific
   const [otpError, setOtpError] = useState("");
   const inputRefs = useRef([]);
   const [isFocused, setIsFocused] = useState(false);
+  const [authLoading, setAuthLoading] = useState(false)
 
 
   const validatePassword = (pwd) => {
@@ -81,10 +83,6 @@ const handleForgetPasswordSubmit = (e) => {
   }
 };
 
-
-  
-
-
   const PasswordRule = ({ valid, text }) => (
   <li className={`flex items-center gap-2 ${valid ? "text-green-600" : "text-gray-700"}`}>
     {valid ? <FaCheck className="text-green-500" /> : <FaTimes className="text-red-500" />}
@@ -106,26 +104,38 @@ const handleForgetPasswordSubmit = (e) => {
     setforgetOtp(true)
   }
 
-  //keyboard key mapping 
   const handleKeyDown = (e) => {
-    const index = inputRefs.current.indexOf(e.target);
+  const index = inputRefs.current.indexOf(e.target);
 
-    if (
-      !/^[0-9]$/.test(e.key) &&
-      e.key !== "Backspace" &&
-      e.key !== "Delete" &&
-      e.key !== "Tab"
-    ) {
-      e.preventDefault();
-    }
+  // Prevent invalid keys
+  if (
+    !/^[0-9]$/.test(e.key) &&
+    e.key !== "Backspace" &&
+    e.key !== "Delete" &&
+    e.key !== "Tab" &&
+    e.key !== "ArrowLeft" &&
+    e.key !== "ArrowRight"
+  ) {
+    e.preventDefault();
+  }
 
-    if (e.key === "Backspace" && !otp[index] && index > 0) {
-      const updatedOtp = [...otp];
+  // Handle Backspace behavior
+  if (e.key === "Backspace") {
+    e.preventDefault(); // Prevent default to avoid caret jumping
+    const updatedOtp = [...otp];
+
+    if (otp[index]) {
+      // If current input has a value, clear it
+      updatedOtp[index] = "";
+      setOtp(updatedOtp);
+    } else if (index > 0) {
+      // If current input is empty, move to previous
       updatedOtp[index - 1] = "";
       setOtp(updatedOtp);
       inputRefs.current[index - 1]?.focus();
     }
-  };
+  }
+};
 
   //otp input get function
   const handleInput = (e) => {
@@ -173,6 +183,26 @@ const handleForgetPasswordSubmit = (e) => {
       setForgetEmail(true)
     }
   };
+
+    const onAuthenticateOTP = (e) => {
+    e.preventDefault();
+    const fullOtp = otp.join("");
+    if (fullOtp.length < otp.length) {
+      console.log("Please enter complete OTP");
+      setOtpError("Please enter a valid 4-digit OTP.");
+    } else {
+      setOtpError("");
+      console.log("OTP submitted:", fullOtp);
+      setAuthLoading(true)
+      setOtp(["","","",""])
+
+       setTimeout(() => {
+      setAuthLoading(false);
+      setAdminVerification(false); // Hide OTP screen
+    }, 5000);
+    }
+  };
+
 
   //email verification function
   const EmailVerification = (e) => {
@@ -427,7 +457,7 @@ const handleForgetPasswordSubmit = (e) => {
           </div>
         </div>
       )}
-      {forget && <>
+      {forget &&
         <>
           <div className="w-full  h-[100vh] forgound-bg z-10">
             {/* Left Panel */}
@@ -701,13 +731,81 @@ const handleForgetPasswordSubmit = (e) => {
       
           </div>
         </>
-      </>}
+      }
       {adminVerification && (
         <>
-          <p>AdminVerification</p>
-        </>
+          <div className="w-full  h-[100vh] forgound-bg z-10">
+            <div className="flex h-auto items-center  py-5 px-6">
+              <img className="w-16 h-16" src={assests.logo} alt="Logo" />
+              <h1 className="text-2xl font-extrabold text-primary-blue ml-2">
+                OS BIZ
+              </h1>
+            </div>
+            {!authLoading ? (
+            <div className="w-full flex justify-center items-center my-6 absolute">
+              <div className="w-90 h-auto max-sm:w-full max-md:my-20 mx-auto my-6 p-3 max-md:px-4 bg-white rounded-[10px] shadow-[0px_5px_12px_0px_rgba(0,51,102,0.2)]">
+                <div className="border border-gray-300 text-gray-800 w-fit p-[2px] rounded-[4px] cursor-pointer"  onClick={() => {
+    setAdminVerification(prev => !prev);  // Hide Forget Email screen
+  }}>
+                  <IoIosArrowBack size={20}/>
+                </div>
+                <div className="flex flex-col justify-center items-center">
+                  <img className="w-16 object-contain" src={assests.Autheticate} alt="" />
+                </div>
+                <h2 className="text-center text-[24px]/7 font-inter font-extrabold mx-auto mt-2">Two-factor authentication</h2>
+                <p className="text-center text-sm/4 mt-2">Enter the verification code we sent to 
+                <span className="font-semibold"> {emailAddress}</span></p>
+               <form id="otp-form" className="mt-4 space-y-2"  onSubmit={(e) => onAuthenticateOTP(e)}>
+                  <div className="flex gap-2 mx-auto justify-center">
+                     {otp.map((digit, index) => (
+            <input
+              key={index}
+              type="text"
+              maxLength={1}
+              value={digit}
+              onChange={handleInput}
+              onKeyDown={handleKeyDown}
+              onFocus={handleFocus}
+              onPaste={handlePaste}
+              ref={(el) => (inputRefs.current[index] = el)}
+              className={`shadow-xs flex w-[54px] h-[54px] items-center justify-center rounded-lg border border-stroke bg-white p-2  text-center text-xl font-medium text-gray-5 outline-none sm:text-2xl border ${
+                        otpError
+                          ? "border-red-300"
+                          : "border-gray-300 focus:ring-primary-blue focus:shadow-2xl"
+                      } focus:shadow-2xl focus:outline-none focus:ring-2`}
+            />
+          ))}
+                  </div>
+                  {otpError && (
+        <p className="text-red-500 text-center text-sm mt-2">{otpError}</p>
       )}
-    </>
+          
+          <button
+                  type="submit"
+                  className="w-full bg-primary-blue text-white py-2 my-4 rounded-md hover:bg-blue-800 transition font-semibold cursor-pointer"
+                >
+                  Verify
+                </button>
+        </form>
+              </div>
+            </div>
+            ):(
+            <div className="w-full flex justify-center items-center my-6 absolute">
+              <div className="w-90 h-auto max-sm:w-full max-md:my-20 mx-auto my-6 p-3 max-md:px-4 bg-white rounded-[10px] shadow-[0px_5px_12px_0px_rgba(0,51,102,0.2)]">
+               <DotLottieReact
+          src="https://lottie.host/febea2ad-e131-4391-a426-48645bafb5f1/9yj6y8HE8h.lottie"
+          autoplay
+          loop={false}
+        />
+        <p className="font-inter text-[#56CA00] text-center text-xl font-semibold">OTP Verified Successfully!</p>
+              </div>
+            </div>
+            )}
+            </div>
+</>
+      )
+      }
+      </>
   );
 };
 
