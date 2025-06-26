@@ -8,6 +8,7 @@ import Companyprofile from '@pages/Signup/Companyprofile'
 import ProtectedRoute from "@components/ProtectedRoute"
 import Dashboard from '@pages/Dashboard/Dashboard'
 
+
 const App = () => {
   const [isLogin ,setIsLogin] = useState(false)
   return (
