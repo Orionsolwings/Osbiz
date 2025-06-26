@@ -1,0 +1,50 @@
+{
+  "companyName": "OrionSolwings",
+  "emailAddress": "contact@OriosolWings.com",
+  "phoneNumber": "+91-9876543210",
+  "password": "Secure123!",
+  "contactNumber": "+91-9876543210",
+  "websiteURL": "https://www.orionsolwings.com",
+  "officeAddress": "123 Main Corporate Office",
+  "streetAddress": "123 Main St",
+  "streetAddressLine2": "2nd Floor, Block B",
+  "city": "Hyderabad",
+"state": "Andhra Pradesh",
+"postal": "600002",
+  "businessOrganizationType": "Corporation",
+  "contactPersonInformation": {
+    "name": "John Doe",
+    "contact": "+91-9876543210",
+    "email": "johndoe@abc.com"
+  },
+  "signupAuth": true,
+  "adminAuth": true,
+  "checkboxConfirmation": true,
+  "CreatetedDate": "2025-06-24",
+  "role": [
+    {
+      "businessPartner": [{ "create": true, "edit": true, "view": true, "delete": true }],
+      "invoice": [{ "create": true, "edit": true, "view": true, "delete": true }],
+      "transaction": [{ "create": true, "edit": true, "view": true, "delete": true }],
+      "catalogue": [{ "create": true, "edit": true, "view": true, "delete": true }],
+      "purchaseOrder": [{ "create": true, "edit": true, "view": true, "delete": true }],
+      "purchaseReturn": [{ "create": true, "edit": true, "view": true, "delete": true }],
+      "payables": [{ "create": true, "edit": true, "view": true, "delete": true }],
+      "inventory": [{ "create": true, "edit": true, "view": true, "delete": true }],
+      "indent": [{ "create": true, "edit": true, "view": true, "delete": true }],
+      "payments": [{ "create": true, "edit": true, "view": true, "delete": true }],
+      "aments": [{ "create": true, "edit": true, "view": true, "delete": true }],
+      "expense": [{ "create": true, "edit": true, "view": true, "delete": true }],
+      "employees": [{ "create": true, "edit": true, "view": true, "delete": true }],
+      "timesheets": [{ "create": true, "edit": true, "view": true, "delete": true }],
+      "submission": [{ "create": true, "edit": true, "view": true, "delete": true }],
+      "report": [{ "create": true, "edit": true, "view": true, "delete": true }],
+      "businessSetup": [{ "create": true, "edit": true, "view": true, "delete": true }],
+      "generalLedger": [{ "create": true, "edit": true, "view": true, "delete": true }],
+      "numberRange": [{ "create": true, "edit": true, "view": true, "delete": true }],
+      "emailTemplate": [{ "create": true, "edit": true, "view": true, "delete": true }],
+      "invoiceTemplate": [{ "create": true, "edit": true, "view": true, "delete": true }],
+      "paymentsIntegration": [{ "create": true, "edit": true, "view": true, "delete": true }]
+    }
+  ]
+}
