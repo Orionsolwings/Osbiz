@@ -6,7 +6,7 @@ cat << 'EOF' > README.md
 
 ## 📁 Folder Structure
 
-cat << 'EOF'
+```bash
 OSBIZ/
 ├── public/
 ├── src/
@@ -20,7 +20,7 @@ OSBIZ/
 ├── index.html
 ├── package.json
 ├── README.md
-EOF
+```
 
 ---
 
