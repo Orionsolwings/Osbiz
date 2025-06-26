@@ -6,21 +6,21 @@ cat << 'EOF' > README.md
 
 ## 📁 Folder Structure
 
-\`\`\`
+cat << 'EOF'
 OSBIZ/
 ├── public/
 ├── src/
 │   ├── assets/             # Static images, icons
 │   ├── components/         # Reusable components (Input, Button, etc.)
-│   ├── pages/              # Page-level components (Login, Signup, Dashboard,profile section)
+│   ├── pages/              # Page-level components (Login, Signup, Dashboard, Profile Section)
 │   ├── hooks/              # Custom React hooks
 │   ├── App.jsx             # Root app component
-│   └── index.js # Entry point
+│   └── index.js            # Entry point
 ├── .gitignore
 ├── index.html
 ├── package.json
 ├── README.md
-\`\`\`
+EOF
 
 ---
 
