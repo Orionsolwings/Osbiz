@@ -196,7 +196,7 @@ const handleForgetPasswordSubmit = (e) => {
       setAuthLoading(true)
       setOtp(["","","",""])
 
-       setTimeout(() => {
+      setTimeout(() => {
       setAuthLoading(false);
       setAdminVerification(false); // Hide OTP screen
     }, 5000);
@@ -591,7 +591,7 @@ const handleForgetPasswordSubmit = (e) => {
     setforgetOtp(false);
     setForgetEmail(false);
     setEmailAddress('');
-    setOtp(["","","",""])       
+    setOtp(["","","",""])
                // Clear email input
   }}>
                   <IoIosArrowBack size={20}/>

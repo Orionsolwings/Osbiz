@@ -51,7 +51,7 @@ const ProfilePage = () => {
 
   return (
     <div className="flex-1 bg-[#f1f3ff] p-6 min-h-screen">
-      <div className="max-w-[720px] w-full">
+      <div className="w-full">
         <h1 className="text-3xl font-bold mb-4">
           {activeTab === "profile" ? "Profile" : "Change Password"}
         </h1>

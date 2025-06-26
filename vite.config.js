@@ -16,6 +16,7 @@ export default defineConfig({
       '@components': resolve(__dirname, 'src/Components'),
       '@pages': resolve(__dirname, 'src/pages'),
       '@assets': resolve(__dirname, 'src/assets'),
+       '@hooks': resolve(__dirname, 'src/hooks'),
     },
   },
   content: [
