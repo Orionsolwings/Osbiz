@@ -1,7 +1,7 @@
-cat << 'EOF' > README.md
+
 # OSBIZ
 
-**OSBIZ** is a modern web application built using React.js. It serves as a frontend platform for dynamic and scalable business solutions. This project is structured with modular and clean practices for scalability and maintainability.
+OSBIZ is a modern web application built using React.js. It serves as a frontend platform for dynamic and scalable business solutions. This project is structured with modular and clean practices for scalability and maintainability.
 ---
 
 ## 📁 Folder Structure
@@ -28,22 +28,22 @@ OSBIZ/
 
 ### 1. Clone the Repository
 
-bash
+```bash
 git clone https://github.com/your-username/OSBIZ.git
 cd OSBIZ
-
+```
 
 ### 2. Install Dependencies
 
-\`\`\`bash
+```bash
 npm install
-\`\`\`
+```
 
 ### 3. Run the Development Server
 
-\`\`\`bash
+```bash
 npm run dev
-\`\`\`
+```
 
 ---
 
