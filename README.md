@@ -28,10 +28,10 @@ OSBIZ/
 
 ### 1. Clone the Repository
 
-\`\`\`bash
+bash
 git clone https://github.com/your-username/OSBIZ.git
 cd OSBIZ
-\`\`\`
+
 
 ### 2. Install Dependencies
 
