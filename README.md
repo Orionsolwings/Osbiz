@@ -30,7 +30,7 @@ OSBIZ/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/OSBIZ.git
+git clone https://github.com/Orionsolwings/Osbiz.git
 cd OSBIZ
 ```
 
