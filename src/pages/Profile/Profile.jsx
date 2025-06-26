@@ -41,11 +41,11 @@ const ProfilePage = () => {
 
   const handleSaveProfile = () => {
     setIsEditing(false);
-    // Save profileData logic here
+    
   };
 
   const handleSavePassword = () => {
-    // Save passwordData logic here
+    
     console.log(passwordData);
   };
 
@@ -56,7 +56,7 @@ const ProfilePage = () => {
           {activeTab === "profile" ? "Profile" : "Change Password"}
         </h1>
 
-        {/* Tabs */}
+        {}
         <div className="flex space-x-6 mb-6 border-b border-gray-300 text-sm font-medium">
           <button
             onClick={() => setActiveTab("profile")}
@@ -80,13 +80,13 @@ const ProfilePage = () => {
           </button>
         </div>
 
-        {/* Content */}
+        {}
         <div className="bg-white rounded-xl p-6 shadow-sm">
           {activeTab === "profile" ? (
             <>
               <div className="flex justify-between items-start mb-6">
                 <div className="flex items-center space-x-4">
-                  {/* Add profile image here */}
+                  {}
                   <div>
                     <h2 className="text-2xl font-bold">Name</h2>
                     <p className="text-gray-400">Ed-0012</p>
@@ -187,7 +187,7 @@ const ProfilePage = () => {
                 </div>
               ))}
 
-              {/* Buttons */}
+              {}
               <div className="flex justify-end space-x-3 mt-6">
                 <button className="px-4 py-2 text-sm border border-blue-600 text-blue-600 rounded-md hover:bg-blue-50">
                   Cancel
