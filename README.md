@@ -3,7 +3,7 @@
 
 OSBIZ is a modern web application built using React.js. It serves as a frontend platform for dynamic and scalable business solutions. This project is structured with modular and clean practices for scalability and maintainability.
  
----
+--
 
 ## 📁 Folder Structure
 
