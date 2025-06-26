@@ -18,6 +18,7 @@
     "email": "johndoe@abc.com"
   },
   "signupAuth": true,
+  "verifiyCompanyProfile":true,
   "adminAuth": true,
   "checkboxConfirmation": true,
   "CreatetedDate": "2025-06-24",
@@ -26,7 +27,7 @@
       "businessPartner": [{ "create": true, "edit": true, "view": true, "delete": true }],
       "invoice": [{ "create": true, "edit": true, "view": true, "delete": true }],
       "transaction": [{ "create": true, "edit": true, "view": true, "delete": true }],
-      "catalogue": [{ "create": true, "edit": true, "view": true, "delete": true }],
+      "catalogue": [{ "create": false, "edit": true, "view": true, "delete": true }],
       "purchaseOrder": [{ "create": true, "edit": true, "view": true, "delete": true }],
       "purchaseReturn": [{ "create": true, "edit": true, "view": true, "delete": true }],
       "payables": [{ "create": true, "edit": true, "view": true, "delete": true }],

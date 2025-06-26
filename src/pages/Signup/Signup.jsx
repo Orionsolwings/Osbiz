@@ -333,7 +333,7 @@ const Signup = () => {
                                   </div>
                                   <h2 className="text-center text-[24px]/7 font-inter font-extrabold mx-auto mt-2">Verify Your E-Mail Address</h2>
                                   <p className="text-center text-sm/4 mt-2">Enter the verification code we sent to </p>
-                                  <span className="font-semibold">{emailAddress}</span>
+                                  <span className="text-center font-semibold">{emailAddress}</span>
                                  <form id="otp-form" className="mt-4 space-y-2"  onSubmit={(e) => onAuthOTP(e)}>
                   <div className="flex gap-2 mx-auto justify-center">
                      {otp.map((digit, index) => (
