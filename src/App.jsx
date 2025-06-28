@@ -10,7 +10,7 @@ import Dashboard from '@pages/Dashboard/Dashboard'
 
 
 const App = () => {
-  const [isLogin ,setIsLogin] = useState(false)
+  const [isLogin ,setIsLogin] = useState(true)
   return (
    <>
    <Routes >

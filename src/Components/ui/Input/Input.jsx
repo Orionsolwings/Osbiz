@@ -13,6 +13,7 @@ const Input = ({
   onTogglePassword,
   className = '',
   inputClassName = '',
+  disabled,
   ...props
 }) => {
   return (
@@ -27,9 +28,11 @@ const Input = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        disabled={disabled}
         className={`w-full ${icon ? 'pl-10' : 'pl-3'} pr-${showPasswordToggle ? '10' : '3'} py-2 border ${
           error ? 'border-red-300' : 'border-gray-300 focus:ring-primary-blue focus:shadow-2xl'
-        } rounded-md focus:outline-none focus:ring-2 ${inputClassName}`}
+        }
+         ${disabled ? 'bg-gray-100 text-gray-500 cursor-not-allowed' : 'bg-white text-black'} rounded-md focus:outline-none focus:ring-2 ${inputClassName}`}
         {...props}
       />
       {showPasswordToggle && (

@@ -24,7 +24,7 @@ const Signup = () => {
       isFocused,
       setIsFocused,
       rules,
-      progress,
+      isPasswordValid
     } = usePasswordValidation();
   
      // OTP input hook
@@ -48,6 +48,7 @@ const Signup = () => {
   const [companyError, setCompanyError] = useState("");
   const [phoneError, setPhoneError] = useState("");
   const [signUpAuth, setSignUpAuth] = useState(false);
+  const [resetFormError, setResetFormError] = useState("");
 
 
   const onAuthOTP = (e) => {
@@ -58,7 +59,13 @@ const Signup = () => {
       setOtpError("Please enter a valid 4-digit OTP.");
     } else {
       localStorage.setItem("isVerified", "true");
-      navigate('/companyprofile')
+      navigate('/companyprofile', {
+  state: {
+    companyName: CompanyName,
+    email: emailAddress,
+    phone: PhoneNumber
+  }
+});
       setOtpError("");
       console.log("OTP submitted:", fullOtp);
     }
@@ -88,16 +95,27 @@ const Signup = () => {
       setPhoneError("Please enter a valid 10-digit phone number.");
       isValid = false;
     } else setPhoneError("");
-
-    if (password.length < 6) {
+    
+        if (password.length < 6) {
+           isValid = false;
       setPassError("Password must be at least 6 characters");
+    } else if (!isPasswordValid){
       isValid = false;
-    } else setPassError("");
+      setPassError("Password is not strong enough")
+    }else {
+      setPassError("");
+    }
 
-    if (password !== confirmPassword) {
-      setConfirmError("Passwords do not match.");
+
+    if (confirmPassword.length < 6) {
+      setConfirmError("Password must be at least 6 characters");
       isValid = false;
-    } else setConfirmError("");
+    }else if(password !== confirmPassword){
+       setConfirmError("Passwords do not match.");
+      isValid = false;
+    } else {setConfirmError("");
+      }
+
 
     if (!isValid) return;
     setSignUpAuth(true);
@@ -116,6 +134,9 @@ const Signup = () => {
             <div className="w-96 max-sm:w-full h-fit max-md:my-20 mx-auto my-6 p-6 max-md:px-4 bg-white">
               <h2 className="text-3xl text-black font-extrabold">Create an account</h2>
               <p className="text-gray-700 mt-2">Simplify Your Inventory, Boost Your Business.</p>
+              {resetFormError && (
+  <div className="text-red-600 text-sm font-medium mb-2">{resetFormError}</div>
+)}
               <form className="mt-6 space-y-4" onSubmit={onsubmit} autoComplete="off">
                 <div>
                   <label className="text-md font-medium text-gray-700 block mb-1">Company Name</label>
@@ -165,9 +186,10 @@ const Signup = () => {
                     <Input
                         type="tel"
                         inputMode="tel"
+                        pattern="[0-9]*"
                         placeholder="Phone Number"
                         value={PhoneNumber}
-                      onChange={(e) => setPhoneNumber(e.target.value)}
+                        onChange={(e) => {const onlyNums = e.target.value.replace(/\D/g, ""); setPhoneNumber(onlyNums)}}
                         icon={
                           <img
                             src={SignupAssests.PhoneNumber}
@@ -185,8 +207,8 @@ const Signup = () => {
                   <label className="text-md font-medium text-gray-700 block mb-1">Password</label>
                   <div className="relative">
                     <Input
-                                  type={showPassword ? "text" : "password"}
-                                  placeholder="New Password"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="New Password"
                                   value={password}
                                   onChange={(e) => setPassword(e.target.value)}
                                   onFocus={() => setIsFocused(true)}
@@ -261,8 +283,8 @@ const Signup = () => {
                                     <img className="w-16 object-contain" src={assests.forgetphone} alt="" />
                                   </div>
                                   <h2 className="text-center text-[24px]/7 font-inter font-extrabold mx-auto mt-2">Verify Your Phone Number</h2>
-                                  <p className="text-center text-sm/4 mt-2">Enter the verification code we sent to </p>
-                                  <span className="text-center font-semibold">{emailAddress}</span>
+                                  <p className="text-center text-sm/4 mt-2">Enter the verification code we sent to <br></br>
+                                  <span className="text-center font-semibold"> {PhoneNumber}</span></p>
                                  <form id="otp-form" className="mt-4 space-y-2"  onSubmit={(e) => onAuthOTP(e)}>
                                   <OtpInput
                                               otp={otp}

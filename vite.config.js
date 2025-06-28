@@ -14,6 +14,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@components': resolve(__dirname, 'src/Components'),
+      '@layout': resolve(__dirname, 'src/Layout'),
       '@pages': resolve(__dirname, 'src/pages'),
       '@assets': resolve(__dirname, 'src/assets'),
        '@hooks': resolve(__dirname, 'src/hooks'),

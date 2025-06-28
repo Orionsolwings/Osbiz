@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Input from "@components/ui/Input/Input";
 import Button from "@components/ui/Button/Button";
 import { assests } from "@assets/assets";
 
 const CompanyProfile = () => {
+  const location = useLocation();
+  const { companyName, email, phone } = location.state || {};
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    companyName: '',
-    contactNumber: '',
-    companyEmail: '',
+    companyName: companyName || '',
+    contactNumber:phone ||  '',
+    companyEmail: email || '',
     websiteUrl: '',
     streetAddress: '',
     streetAddressLine2: '',
@@ -27,13 +30,26 @@ const CompanyProfile = () => {
 
   const [errors, setErrors] = useState({});
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+const handleChange = (e) => {
+  const { name, value, type, checked } = e.target;
+
+  // Allow only numbers for phone fields
+  const phoneFields = ["contactNumber", "contactPersonNumber"];
+  if (phoneFields.includes(name)) {
+    // Strip non-digit characters
+    const numericValue = value.replace(/\D/g, '');
     setFormData(prev => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: numericValue
     }));
-  };
+    return;
+  }
+
+  setFormData(prev => ({
+    ...prev,
+    [name]: type === 'checkbox' ? checked : value
+  }));
+};
 
   const handleSubmit = (e) => {
   e.preventDefault();
@@ -109,6 +125,11 @@ setFormData(prev => ({
     navigate('/'); // Or wherever you want to redirect after successful submission
   }
 };
+  const disabledFields = {
+    companyName: !!companyName,
+    contactNumber: !!phone,
+    companyEmail: !!email
+  };
 
   return (
     <div className="w-full h-auto min-h-screen forgound-bg bg-gray-50">
@@ -140,6 +161,7 @@ setFormData(prev => ({
                     name={name}
                     placeholder={`Enter ${label.toLowerCase()}`}
                     value={formData[name]}
+                    disabled={disabledFields[name]}
                     onChange={handleChange}
                     error={errors[name]}
                   />

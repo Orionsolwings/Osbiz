@@ -37,6 +37,7 @@ const Login = ({setIsLogin}) => {
     isFocused,
     setIsFocused,
     rules,
+    isPasswordValid,
     progress,
   } = usePasswordValidation();
 
@@ -84,7 +85,7 @@ const Login = ({setIsLogin}) => {
     if(!isValid) return
 
     //implement the api logic
-    //adminAuth is login is admin 
+    //adminAuth is login is admin
     if(adminAuth){
        //go the Adminverifcation
 
@@ -131,13 +132,11 @@ const Login = ({setIsLogin}) => {
     setNewPassError("Enter the new Password")
   }else if (!confirmPassword) {
     setConfirmError("Enter the Confirm Password")
-  } else if (!progress) {
+  }else if (!isPasswordValid){
     setResetFormError("Password is not strong enough")
-    return;
   } else if (password !== confirmPassword) {
     console.log("Your Password is not matching");
     setResetFormError("Your Password is not matching")
-    return;
   } else {
     //Implement the APi Logic here
     console.log("Your Password is updated");
@@ -227,7 +226,7 @@ const Login = ({setIsLogin}) => {
                     </label>
                     <div className="relative">
                       <Input
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         placeholder="Password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
@@ -531,6 +530,8 @@ const Login = ({setIsLogin}) => {
                   setCurrentForm("forgot");
                    setPhone('')
                    setOtp(["","","",""])
+                   setPassword("")
+                   setConfirmPassword("")
                 }}
               >
                 <IoIosArrowBack size={20} />
