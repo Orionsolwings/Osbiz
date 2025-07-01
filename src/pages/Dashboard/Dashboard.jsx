@@ -1,9 +1,11 @@
 import React from 'react'
-import Sidebar from '@layout/Sidebar'
+
 
 const Dashboard = () => {
   return (
-    <Sidebar />
+    <div className='bg-[#f1f3ff] w-full h-full'>
+      <h2>aravinth</h2>
+    </div>
   )
 }
 

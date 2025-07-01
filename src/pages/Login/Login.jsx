@@ -9,6 +9,7 @@ import OtpInput from "@components/ui/Input/OtpInput";
 import PasswordStrength from "@components/auth/PasswordStrength";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { IoIosArrowBack } from "react-icons/io";
+import {login} from '@service/Api'
 
 
 const Login = ({setIsLogin}) => {
@@ -38,7 +39,7 @@ const Login = ({setIsLogin}) => {
     setIsFocused,
     rules,
     isPasswordValid,
-    progress,
+  
   } = usePasswordValidation();
 
    // OTP input hook
@@ -64,38 +65,50 @@ const Login = ({setIsLogin}) => {
 
 
   //Handles the login form submission.
-  const onsubmit = (e) => {
-    e.preventDefault();
-    let isValid = true;
+  const onsubmit = async (e) => {
+  e.preventDefault();
+  let isValid = true;
 
-    // Validate email or phone
-    if (!email) {
-    setEmailError('Please enter a valid email or 10-digit phone number.');
+  // Validate email or phone
+  if (!email) {
+    setEmailError("Please enter a valid email or 10-digit phone number.");
     isValid = false;
-  } else setEmailError("");
+  } else {
+    setEmailError("");
+  }
 
-// Validate Password
-    if (password.length < 6) {
-      isValid = false;
-      setPassError("Password must be at least 6 characters");
-    } else {
-      setPassError("");
-    }
+  // Validate Password
+  if (password.length < 6) {
+    setPassError("Password must be at least 6 characters");
+    isValid = false;
+  } else {
+    setPassError("");
+  }
 
-    if(!isValid) return
+  if (!isValid) return;
 
-    //implement the api logic
-    //adminAuth is login is admin
-    if(adminAuth){
-       //go the Adminverifcation
-
-    setCurrentForm("adminverify");
-    }else{
-      setIsLogin(true)
-      navigate('/')
-    }
-   
+  const userData = {
+    emailAddress: email,
+    password: password,
   };
+  console.log(userData)
+  try {
+    const response = await login(userData); // fixed here
+
+    console.log("Login Response:", response);
+
+    // Example condition if you check for admin
+    if (adminAuth == true) {
+      setCurrentForm("adminverify");
+    } else {
+      setIsLogin(true);
+      navigate("/dashboard");
+    }
+  } catch (err) {
+    console.error("Login failed:", err);
+    setPassError("Login failed. Please check credentials.");
+  }
+};
 
   //Handles the forgetPhone form submission.
   const handleForgetPhone = (e) => {

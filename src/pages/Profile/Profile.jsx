@@ -50,8 +50,8 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="flex-1 bg-[#f1f3ff] p-6 min-h-screen">
-      <div className="w-full">
+    <div className="w-auto h-full bg-[#f1f3ff] p-6">
+      <div className="w-auto">
         <h1 className="text-3xl font-bold mb-4">
           {activeTab === "profile" ? "Profile" : "Change Password"}
         </h1>
@@ -62,8 +62,8 @@ const ProfilePage = () => {
             onClick={() => setActiveTab("profile")}
             className={`pb-2 ${
               activeTab === "profile"
-                ? "text-blue-600 border-b-2 border-blue-600"
-                : "text-gray-600 hover:text-blue-600"
+                ? "text-primary-blue border-b-2 border-blue-600"
+                : "text-gray-600 hover:text-[#A7B2D6]"
             }`}
           >
             Profile
@@ -72,8 +72,8 @@ const ProfilePage = () => {
             onClick={() => setActiveTab("password")}
             className={`pb-2 ${
               activeTab === "password"
-                ? "text-blue-600 border-b-2 border-blue-600"
-                : "text-gray-600 hover:text-blue-600"
+                ? "text-primary-blue border-b-2 border-blue-600"
+                : "text-gray-600 hover:text-[#A7B2D6]"
             }`}
           >
             Change Password
@@ -96,7 +96,7 @@ const ProfilePage = () => {
                 {!isEditing ? (
                   <button
                     onClick={() => setIsEditing(true)}
-                    className="flex items-center text-sm px-3 py-1.5 text-white bg-blue-600 hover:bg-blue-700 rounded-md"
+                    className="flex items-center text-sm px-3 py-1.5 text-white bg-primary-blue hover:bg-blue-700 rounded-md"
                   >
                     <Pencil className="w-4 h-4 mr-1" />
                     Edit
@@ -189,12 +189,12 @@ const ProfilePage = () => {
 
               {}
               <div className="flex justify-end space-x-3 mt-6">
-                <button className="px-4 py-2 text-sm border border-blue-600 text-blue-600 rounded-md hover:bg-blue-50">
+                <button className="px-4 py-2 text-sm border border-primary-blue text-primary-blue rounded-md hover:bg-blue-50">
                   Cancel
                 </button>
                 <button
                   onClick={handleSavePassword}
-                  className="px-4 py-2 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                  className="px-4 py-2 text-sm bg-primary-blue text-white rounded-md hover:bg-blue-700"
                 >
                   Save
                 </button>

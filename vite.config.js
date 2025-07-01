@@ -17,11 +17,24 @@ export default defineConfig({
       '@layout': resolve(__dirname, 'src/Layout'),
       '@pages': resolve(__dirname, 'src/pages'),
       '@assets': resolve(__dirname, 'src/assets'),
-       '@hooks': resolve(__dirname, 'src/hooks'),
+      '@hooks': resolve(__dirname, 'src/hooks'),
+      '@service': resolve(__dirname, 'src/Service'),
     },
   },
   content: [
   "./index.html",
   "./src/**/*.{js,ts,jsx,tsx}",
+  "node_modules/preline/dist/*.js",
 ],
+server: {
+    host: true, // important for external access
+    allowedHosts: ['8350-42-106-186-83.ngrok-free.app'],
+    proxy: {
+      '/osbiz-backend-orionsolwings': {
+        target: 'http://localhost:8082',
+        changeOrigin: true,
+        secure: false
+      }
+    }
+  }
 })

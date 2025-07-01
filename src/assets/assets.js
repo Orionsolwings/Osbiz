@@ -16,6 +16,7 @@ import Autheticate from "./Authenticate.png"
 import Signupimg from "./Signup-img.png"
 import CompanyName from "./briefcase.png"
 import PhoneNumber from "./Phone.png"
+import SidebarArrow from "./arrow.png"
 
 export const assests = {
     logo,
@@ -39,4 +40,8 @@ export const SignupAssests = {
     Signupimg,
     CompanyName,
     PhoneNumber
+}
+
+export const SidebarImg = {
+    SidebarArrow,
 }

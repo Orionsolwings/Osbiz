@@ -8,6 +8,7 @@ import Button from "@components/ui/Button/Button";
 import OtpInput from "@components/ui/Input/OtpInput";
 import PasswordStrength from "@components/auth/PasswordStrength";
 import { IoIosArrowBack } from "react-icons/io";
+import {signup} from '@service/Api'
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -74,7 +75,7 @@ const Signup = () => {
 
 
 
-  const onsubmit = (e) => {
+  const onsubmit = async(e) => {
     e.preventDefault();
 
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -118,8 +119,25 @@ const Signup = () => {
 
 
     if (!isValid) return;
-    setSignUpAuth(true);
-    console.log("Form is valid", { CompanyName, emailAddress, PhoneNumber, password });
+
+    const userData={
+      emailAddress: emailAddress,
+      companyName: CompanyName,
+      phoneNumber: PhoneNumber,
+      password: password,
+      admin:true
+    }
+    try {
+        const response = await signup(userData); // fixed here
+    
+        console.log("Signup Response:", response);
+          setSignUpAuth(true);
+          console.log("Form is valid", { CompanyName, emailAddress, PhoneNumber, password });
+      } catch (err) {
+        console.error("Signup failed:", err);
+        setPassError("Signup failed. Please check credentials.");
+      }
+    
   };
 
   return (
