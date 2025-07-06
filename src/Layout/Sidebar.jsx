@@ -1,11 +1,29 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { SidebarImg, assests } from "@assets/assets";
 import { IoCartOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link,useLocation } from "react-router-dom";
 
 const Sidebar = ({collapsed, setCollapsed}) => {
-  const [activeItem, setActiveItem] = useState('Dashboard');
+  const location = useLocation();
+  const [activeItem, setActiveItem] = useState('');
+  const[userRole,setUserRole] = useState([{
+    "businessPartner": [{ "create": true, "edit": true, "view": true, "delete": true }],
+  }])
 
+  useEffect(() => {
+    // Set active item based on current path
+    const path = location.pathname;
+    if (path.includes('/dashboard')) {
+      setActiveItem('Dashboard');
+    } else if (path.includes('/businesspartner')) {
+      setActiveItem('businesspartner');
+    } else if (path.includes('/settings')) {
+      setActiveItem('Settings');
+    }else{
+      setActiveItem('')
+    }
+    // Add more conditions as needed
+  }, [location.pathname]);
   return (
     <>
       {/* Navigation Toggle */}
@@ -151,7 +169,8 @@ const Sidebar = ({collapsed, setCollapsed}) => {
               {/* Account Dropdown */}
               <div
                 className={`hs-dropdown-menu hs-dropdown-open:opacity-100 w-96 transition-all duration-300 ease-in-out opacity-0 hidden z-30 bg-white border border-gray-300 rounded-xl shadow-2xl
-    lg:${collapsed ? "hs-dropdown-open:left-24" : "hs-dropdown-open:left-64"}
+    ${collapsed ? "hs-dropdown-open:left-24" : "hs-dropdown-open:left-64"} max-lg:hs-dropdown-open:left-0 
+    }
     hs-dropdown-open:absolute hs-dropdown-open:-top-10 font-inter
   `}
                 role="menu"
@@ -351,7 +370,6 @@ const Sidebar = ({collapsed, setCollapsed}) => {
         ? "text-white font-semibold bg-primary-blue group" 
         : "text-black hover:text-primary-blue hover:font-semibold hover:text-md"
     }`}
-                     onClick={() => setActiveItem('Dashboard')}
                   >
                     <svg
                       width="24"
@@ -374,13 +392,13 @@ const Sidebar = ({collapsed, setCollapsed}) => {
                     {!collapsed && "Dashboard"}
                   </Link>
                 </li>
-
+              {userRole[0]?.businessPartner[0]?.view && ( 
                 <li>
-                  <a
+                  <Link to="/businesspartner"
                     className={`group flex items-center gap-x-3.5 py-2 px-2.5  text-sm font-inter text-black rounded-lg font-medium transition-colors duration-200 ${
                       collapsed ? "justify-center" : ""
                     } ${
-      activeItem === 'Business Partner' 
+      activeItem === 'businesspartner' 
         ? "text-white font-semibold bg-primary-blue group" 
         : "text-black hover:text-primary-blue hover:font-semibold hover:text-md"
     }`}
@@ -399,13 +417,20 @@ const Sidebar = ({collapsed, setCollapsed}) => {
                         d="M15.75 6C15.75 6.99456 15.3549 7.94839 14.6516 8.65165C13.9484 9.35491 12.9945 9.75 12 9.75C11.0054 9.75 10.0516 9.35491 9.34833 8.65165C8.64506 7.94839 8.24998 6.99456 8.24998 6C8.24998 5.00544 8.64506 4.05161 9.34833 3.34835C10.0516 2.64509 11.0054 2.25 12 2.25C12.9945 2.25 13.9484 2.64509 14.6516 3.34835C15.3549 4.05161 15.75 5.00544 15.75 6ZM4.50098 20.118C4.53311 18.1503 5.33731 16.2742 6.74015 14.894C8.14299 13.5139 10.0321 12.7405 12 12.7405C13.9679 12.7405 15.857 13.5139 17.2598 14.894C18.6626 16.2742 19.4668 18.1503 19.499 20.118C17.1464 21.1968 14.5881 21.7535 12 21.75C9.32398 21.75 6.78398 21.166 4.50098 20.118Z"
                         stroke-width="1.4"
                         stroke-linecap="round"
-                        className="stroke-current fill-none group-hover:fill-[#A7B2D6] group-hover:stroke-primary-blue"
+                        className={`stroke-current fill-none ${
+          activeItem === 'businesspartner' 
+            ? "fill-[#A7B2D6] stroke-white" 
+            : "group-hover:fill-[#A7B2D6] group-hover:stroke-primary-blue"
+        }`}
                         stroke-linejoin="round"
                       />
                     </svg>
                     {!collapsed && "Business Partner"}
-                  </a>
+                  </Link>
                 </li>
+              )
+}
+               
 
                 <li className="hs-accordion group" id="account-accordion">
                   {" "}

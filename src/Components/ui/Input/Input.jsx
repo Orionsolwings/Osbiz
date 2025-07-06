@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useMemo} from 'react';
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 const Input = ({
@@ -15,7 +15,7 @@ const Input = ({
   inputClassName = '',
   disabled,
   ...props
-}) => {
+}) => useMemo(() => {
   return (
     <div className={`relative ${className}`}>
       {icon && (
@@ -46,6 +46,6 @@ const Input = ({
       
     </div>
   );
-};
+}, [type, placeholder, value, onChange, icon, error, showPasswordToggle, showPassword, onTogglePassword, className, inputClassName, disabled, props]);
 
 export default Input;

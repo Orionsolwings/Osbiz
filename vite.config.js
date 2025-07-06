@@ -28,7 +28,7 @@ export default defineConfig({
 ],
 server: {
     host: true, // important for external access
-    allowedHosts: ['8350-42-106-186-83.ngrok-free.app'],
+    allowedHosts: ['a92a-2402-3a80-1941-d8dc-6878-37af-8597-2834.ngrok-free.app'],
     proxy: {
       '/osbiz-backend-orionsolwings': {
         target: 'http://localhost:8082',

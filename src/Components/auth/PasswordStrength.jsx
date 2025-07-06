@@ -1,7 +1,8 @@
 import React from 'react';
 import PasswordRule from './PasswordRule';
+import { useMemo } from 'react';
 
-const PasswordStrength = ({ rules, isFocused }) => {
+const PasswordStrength = ({ rules, isFocused }) => useMemo(() => {
   if (!isFocused) return null;
 
   return (
@@ -46,6 +47,6 @@ const PasswordStrength = ({ rules, isFocused }) => {
       </ul>
     </div>
   );
-};
+}, [rules, isFocused]);
 
 export default PasswordStrength;

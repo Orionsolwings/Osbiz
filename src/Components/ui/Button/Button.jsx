@@ -1,4 +1,5 @@
 import React from 'react';
+import { useMemo } from 'react';
 
 const Button = ({
   children,
@@ -9,13 +10,13 @@ const Button = ({
   loading = false,
   variant = 'primary', // 'primary', 'secondary', 'outline'
   ...props
-}) => {
-  const baseClasses = 'w-full py-2 rounded-md font-semibold cursor-pointer transition flex items-center justify-center';
+}) => useMemo(() => {
+  const baseClasses = 'py-2 rounded-md font-semibold cursor-pointer transition flex items-center justify-center';
   
   const variantClasses = {
     primary: 'bg-primary-blue text-white hover:bg-blue-800',
-    secondary: 'bg-gray-200 text-gray-800 hover:bg-gray-300',
-    outline: 'border border-primary-blue text-primary-blue hover:bg-blue-50'
+    secondary: 'bg-primary-blue text-white hover:bg-transparent hover:border-[1.8px] hover:border-primary-blue hover:text-primary-blue',
+    outline: 'border-[1.8px] border-primary-blue text-primary-blue hover:bg-primary-blue hover:text-white'
   };
 
   return (
@@ -39,6 +40,6 @@ const Button = ({
       )}
     </button>
   );
-};
+}, [children, className, disabled, loading, onClick, type, variant, props]);
 
 export default Button;

@@ -261,7 +261,7 @@ setFormData(prev => ({
 
             {/* Submit Button */}
             <div className="text-center mt-4">
-              <Button type="submit" className="bg-primary-blue text-white px-6 py-2 rounded-md">
+              <Button type="submit" className="bg-primary-blue text-white px-6 py-2 rounded-md w-full">
                 Submit
               </Button>
             </div>

@@ -124,18 +124,19 @@ const Signup = () => {
       emailAddress: emailAddress,
       companyName: CompanyName,
       phoneNumber: PhoneNumber,
-      password: password,
-      admin:true
+      password: password
     }
     try {
         const response = await signup(userData); // fixed here
-    
         console.log("Signup Response:", response);
+        console.log(response)
           setSignUpAuth(true);
           console.log("Form is valid", { CompanyName, emailAddress, PhoneNumber, password });
+
       } catch (err) {
         console.error("Signup failed:", err);
-        setPassError("Signup failed. Please check credentials.");
+        console.log(err)
+        setPassError("Signup failed:");
       }
     
   };
@@ -260,7 +261,7 @@ const Signup = () => {
                 </div>
 
                   {/* Sign In Button */}
-                                 <Button type="submit" className="mt-4">
+                                 <Button type="submit" className="mt-4 w-full">
                                      Sign Up
                                   </Button>
               </form>
@@ -314,12 +315,12 @@ const Signup = () => {
                                               error={otpError}
                                             />
           
-          <button
+          <Button
                   type="submit"
-                  className="w-full bg-primary-blue text-white py-2 my-4 rounded-md hover:bg-blue-800 transition font-semibold cursor-pointer"
+                  className="w-full"
                 >
                   Verify
-                </button>
+                </Button>
         </form>
                                 </div>
                               </div>

@@ -1,9 +1,7 @@
-
-
 export const login = async (userData) => {
     console.log(userData)
   try {
-    const response = await fetch(`/osbiz-backend-orionsolwings/clients/login`, {
+    const response = await fetch(`/osbiz-backend-orionsolwings/api/v1/clients/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -31,7 +29,7 @@ export const login = async (userData) => {
 export const signup = async (userData) => {
     console.log(userData)
   try {
-    const response = await fetch(`/osbiz-backend-orionsolwings/clients`, {
+    const response = await fetch(`/osbiz-backend-orionsolwings/api/v1/clients/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

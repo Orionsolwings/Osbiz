@@ -4,11 +4,16 @@ import { Link } from "react-router-dom";
 
 const AuthLayout = ({ children }) => {
       const [collapsed, setCollapsed] = useState(false);
+
+      const handlelogout = () => {
+        localStorage.removeItem("isLogin");
+        window.location.href = "/";
+      }
   return (
  <div className="flex min-h-screen">
       <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} />
       <main 
-        className={`flex-1  transition-all duration-300 ${
+        className={`flex-1 w-full overflow-x-hidden  transition-all duration-300 ${
           collapsed ? 'ml-4' : 'ml-44'
         }    max-lg:-ml-10` }
       >
@@ -56,7 +61,7 @@ const AuthLayout = ({ children }) => {
     </a>
   </li>
   <li>
-    <a className="text-base bg-transparent hover:bg-gray-100 focus:bg-primary-blue active:bg-primary-blue">
+    <a className="text-base bg-transparent hover:bg-gray-100 focus:bg-primary-blue active:bg-primary-blue" onClick={handlelogout}>
       Logout
     </a>
   </li>

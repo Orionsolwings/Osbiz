@@ -102,10 +102,12 @@ const Login = ({setIsLogin}) => {
       setCurrentForm("adminverify");
     } else {
       setIsLogin(true);
+      localStorage.setItem("isLogin", true);
       navigate("/dashboard");
     }
   } catch (err) {
     console.error("Login failed:", err);
+    console.log(err?.message)
     setPassError("Login failed. Please check credentials.");
   }
 };
@@ -278,7 +280,7 @@ const Login = ({setIsLogin}) => {
                     </a>
                   </div>
 
-                  <Button type="submit" className="mt-4">
+                  <Button type="submit" className="mt-4 w-full">
                     Sign In
                   </Button>
                 </form>
@@ -456,7 +458,7 @@ const Login = ({setIsLogin}) => {
                 </div>
 
                 {/* Sign In Button */}
-                 <Button type="submit" className="mt-4">
+                 <Button type="submit" className="mt-4 w-full">
                     Send OTP
                   </Button>
               </form>
@@ -517,7 +519,7 @@ const Login = ({setIsLogin}) => {
  
 
                 {/* Sign In Button */}
-                 <Button type="submit" className="mt-4">
+                 <Button type="submit" className="mt-4 w-full">
                     Verify
                   </Button>
               </form>
@@ -613,7 +615,7 @@ const Login = ({setIsLogin}) => {
  
 
                 {/* Sign In Button */}
-                 <Button type="submit" className="mt-4">
+                 <Button type="submit" className="mt-4 w-full">
                     Reset
                   </Button>
               </form>
@@ -673,7 +675,7 @@ const Login = ({setIsLogin}) => {
  
 
                 {/* Sign In Button */}
-                 <Button type="submit" className="mt-4">
+                 <Button type="submit" className="mt-4 w-full">
                     Verify
                   </Button>
               </form>

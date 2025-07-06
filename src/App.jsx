@@ -10,10 +10,12 @@ import LoginProtectedRoute from "@components/LoginProtectedRoute"
 import Dashboard from '@pages/Dashboard/Dashboard'
 
 import AuthLayout from '@components/auth/AuthLayout'
+import BussinessPartner from '@pages/BusinesPartner/BussinessPartner'
+import AddBussinessPartner from '@pages/BusinesPartner/AddBussinessPartner'
 
 
 const App = () => {
-  const [isLogin ,setIsLogin] = useState(true)
+  const [isLogin ,setIsLogin] = useState(localStorage.getItem("isLogin") === "true" || false);
   return (
    <>
    <Routes >
@@ -41,6 +43,26 @@ const App = () => {
           </LoginProtectedRoute>
         }
       />
+
+      <Route
+        path="/businesspartner"
+        element={
+          <LoginProtectedRoute isLogin={isLogin}>
+            <AuthLayout>
+              <BussinessPartner />
+            </AuthLayout>
+          </LoginProtectedRoute>
+        }
+      />
+      <Route
+        path="/businesspartner/creatabussinesspartner"
+        element={
+          <LoginProtectedRoute isLogin={isLogin}>
+              <AddBussinessPartner/>
+          </LoginProtectedRoute>
+        }
+      />
+
 
     <Route
         path="/profile"

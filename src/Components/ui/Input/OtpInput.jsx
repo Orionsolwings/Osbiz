@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useMemo} from 'react';
 
 const OtpInput = ({ 
   otp, 
@@ -9,7 +9,7 @@ const OtpInput = ({
   handlePaste,
   error,
   length = 4
-}) => {
+}) => useMemo(() => {
   return (
     <div className="flex flex-col items-center">
       <div className="flex gap-2 mx-auto justify-center">
@@ -35,6 +35,6 @@ const OtpInput = ({
       )}
     </div>
   );
-};
+}, [otp, inputRefs, handleInput, handleKeyDown, handleFocus, handlePaste, error, length]);
 
 export default OtpInput;
